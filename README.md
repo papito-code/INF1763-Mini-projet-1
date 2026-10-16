@@ -1,11 +1,16 @@
 # INF1763-Mini-projet-1
 INF1763 — Techniques et outils professionnels de développement logiciel Projet
+
 # TaskFlow
 
 Application Java en console pour gérer une liste de tâches (INF1763, mini-projet 1).
 
 ## Équipe
-- A, B, C, D, E : à remplacer par les vrais noms
+- Abdramane Moussa Doumbia
+- Florian Yann Ollo Hien
+- Elafissou Noham Gnanvo
+- Kalil Soumaoro Ibrahima
+- Armel Landry Yoda
 
 ## Prérequis
 - JDK : openjdk version "25.0.2" `java -version`
