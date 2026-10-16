@@ -10,7 +10,7 @@ Application Java en console pour gérer une liste de tâches (INF1763, mini-proj
 - Florian Yann Ollo Hien
 - Elafissou Noham Gnanvo
 - Kalil Soumaoro Ibrahima
-- Armel Landry Yoda
+- Dalaké Armel Landry Yoda
 
 ## Prérequis
 - JDK : openjdk version "25.0.2" `java -version`
