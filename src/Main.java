@@ -35,22 +35,42 @@ public class Main {
 
             } else if (choix == 2) {
                 System.out.println("en cours de conception");
+
             } else if (choix == 3) {
                 System.out.println("en cours de conception");
 
             } else if (choix == 4) {
-                System.out.println("en cours de conception");
-
-            } else if (choix == 5) {
-                System.out.println("Au revoir !");
-                break;
-            } else {
-                System.out.println("Veuillez choisir un numéro de la liste merci.");
+            System.out.print("Identifiant de la tâche : ");
+            int id;
+            try {
+                id = Integer.parseInt(scanner.nextLine().trim());
+            } catch (NumberFormatException e) {
+                System.out.println("Identifiant invalide : entrez un nombre entier positif.");
+                continue;
             }
-        }
-        scanner.close();
+            if (id <= 0) {
+                System.out.println("Identifiant invalide : entrez un nombre entier positif.");
+                continue;
+            }
+            System.out.print("Nouvelle priorité (Basse, Normale ou Élevée) : ");
+            String priorite = scanner.nextLine();
+            try {
+                gestionnaire.modifierPriorite(id, priorite);
+                System.out.println("Priorité de la tâche " + id + " modifiée avec succès.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
 
+        } else if (choix == 5) {
+            System.out.println("Au revoir !");
+            break;
+
+        } else {
+            System.out.println("Veuillez choisir un numéro de la liste merci.");
+        }
     }
+        scanner.close();
+}
 
     // US-01 : Ajouter une tâche
     // L'utilisateur peut taper "annuler" à chaque question pour revenir au menu.

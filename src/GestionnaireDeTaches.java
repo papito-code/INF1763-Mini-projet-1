@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.text.Normalizer;
 
 public class GestionnaireDeTaches {
 
@@ -26,5 +27,33 @@ public class GestionnaireDeTaches {
             }
         }
         return null;
+    }
+    // US-04 : modifie la priorité d'une tâche existante.
+    public void modifierPriorite(int id, String saisie) {
+        Tache tache = trouverParId(id);
+        if (tache == null) {
+            throw new IllegalArgumentException("Aucune tâche avec l'identifiant " + id + ".");
+        }
+        String priorite = normaliserPriorite(saisie);
+        if (priorite == null) {
+            throw new IllegalArgumentException("Priorité invalide. Choisissez Basse, Normale ou Élevée.");
+        }
+        tache.setPriorite(priorite);
+    }
+
+    // Accepte la saisie sans tenir compte de la casse ni des accents.
+    private String normaliserPriorite(String saisie) {
+        if (saisie == null) {
+            return null;
+        }
+        String texte = Normalizer.normalize(saisie.trim(), Normalizer.Form.NFD)
+                .replaceAll("\\p{M}", "")
+                .toLowerCase();
+        switch (texte) {
+            case "basse":   return "Basse";
+            case "normale": return "Normale";
+            case "elevee":  return "Élevée";
+            default:        return null;
+        }
     }
 }
