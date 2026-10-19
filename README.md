@@ -9,7 +9,7 @@ Application Java en console pour gérer une liste de tâches (INF1763, mini-proj
 - Abdramane Moussa Doumbia
 - Florian Yann Ollo Hien
 - Elafissou Noham Gnanvo
-- Kalil Soumaoro Ibrahima
+- Kalil Ibrahima Soumaoro
 - Dalaké Armel Landry Yoda
 
 ## Prérequis
