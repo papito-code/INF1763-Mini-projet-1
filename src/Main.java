@@ -73,8 +73,13 @@ public class Main {
                 System.out.print("Nouvelle priorité (Basse, Normale ou Élevée) : ");
                 String priorite = scanner.nextLine();
                 try {
-                    gestionnaire.modifierPriorite(id, priorite);
-                    System.out.println("Priorité de la tâche " + id + " modifiée avec succès.");
+                    if (gestionnaire.modifierPriorite(id, priorite)) {
+                        System.out.println("Priorité de la tâche " + id + " modifiée avec succès.");
+                    } else {
+                        System.out.println("La tâche " + id + " a déjà la priorité "
+                                + gestionnaire.trouverParId(id).getPriorite()
+                                + ". Aucune modification n'a été faite.");
+                    }
                 } catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
                 }
