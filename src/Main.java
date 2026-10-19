@@ -37,7 +37,25 @@ public class Main {
                 System.out.println("en cours de conception");
 
             } else if (choix == 3) {
-                System.out.println("en cours de conception");
+                System.out.print("Identifiant de la tâche : ");
+                int id;
+                try {
+                    id = Integer.parseInt(scanner.nextLine().trim());
+                } catch (NumberFormatException e) {
+                    System.out.println("Identifiant invalide : entrez un nombre entier positif.");
+                    continue;
+                }
+                if (id <= 0) {
+                    System.out.println("Identifiant invalide : entrez un nombre entier positif.");
+                    continue;
+                }
+                try {
+                    Tache tache = gestionnaire.terminerTache(id);
+                    System.out.println("La tâche " + id + " (« " + tache.getTitre()
+                            + " ») est maintenant terminée. Statut : À faire -> Terminée.");
+                } catch (IllegalArgumentException | IllegalStateException e) {
+                    System.out.println(e.getMessage());
+                }
 
             } else if (choix == 4) {
             System.out.print("Identifiant de la tâche : ");

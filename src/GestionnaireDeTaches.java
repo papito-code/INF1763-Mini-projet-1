@@ -41,6 +41,20 @@ public class GestionnaireDeTaches {
         tache.setPriorite(priorite);
     }
 
+    // US-03 : marque une tâche existante comme terminée.
+    public Tache terminerTache(int id) {
+        Tache tache = trouverParId(id);
+        if (tache == null) {
+            throw new IllegalArgumentException("Aucune tâche avec l'identifiant " + id + ".");
+        }
+        if (tache.getStatut().equals("Terminée")) {
+            throw new IllegalStateException(
+                    "La tâche " + id + " est déjà terminée. Aucune modification n'est nécessaire.");
+        }
+        tache.setStatut("Terminée");
+        return tache;
+    }
+
     // Accepte la saisie sans tenir compte de la casse ni des accents.
     private String normaliserPriorite(String saisie) {
         if (saisie == null) {
