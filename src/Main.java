@@ -37,40 +37,63 @@ public class Main {
                 System.out.println("en cours de conception");
 
             } else if (choix == 3) {
-                System.out.println("en cours de conception");
+                System.out.print("Identifiant de la tâche : ");
+                int id;
+                try {
+                    id = Integer.parseInt(scanner.nextLine().trim());
+                } catch (NumberFormatException e) {
+                    System.out.println("Identifiant invalide : entrez un nombre entier positif.");
+                    continue;
+                }
+                if (id <= 0) {
+                    System.out.println("Identifiant invalide : entrez un nombre entier positif.");
+                    continue;
+                }
+                try {
+                    Tache tache = gestionnaire.terminerTache(id);
+                    System.out.println("La tâche " + id + " (« " + tache.getTitre()
+                            + " ») est maintenant terminée. Statut : À faire -> Terminée.");
+                } catch (IllegalArgumentException | IllegalStateException e) {
+                    System.out.println(e.getMessage());
+                }
 
             } else if (choix == 4) {
-            System.out.print("Identifiant de la tâche : ");
-            int id;
-            try {
-                id = Integer.parseInt(scanner.nextLine().trim());
-            } catch (NumberFormatException e) {
-                System.out.println("Identifiant invalide : entrez un nombre entier positif.");
-                continue;
-            }
-            if (id <= 0) {
-                System.out.println("Identifiant invalide : entrez un nombre entier positif.");
-                continue;
-            }
-            System.out.print("Nouvelle priorité (Basse, Normale ou Élevée) : ");
-            String priorite = scanner.nextLine();
-            try {
-                gestionnaire.modifierPriorite(id, priorite);
-                System.out.println("Priorité de la tâche " + id + " modifiée avec succès.");
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+                System.out.print("Identifiant de la tâche : ");
+                int id;
+                try {
+                    id = Integer.parseInt(scanner.nextLine().trim());
+                } catch (NumberFormatException e) {
+                    System.out.println("Identifiant invalide : entrez un nombre entier positif.");
+                    continue;
+                }
+                if (id <= 0) {
+                    System.out.println("Identifiant invalide : entrez un nombre entier positif.");
+                    continue;
+                }
+                System.out.print("Nouvelle priorité (Basse, Normale ou Élevée) : ");
+                String priorite = scanner.nextLine();
+                try {
+                    if (gestionnaire.modifierPriorite(id, priorite)) {
+                        System.out.println("Priorité de la tâche " + id + " modifiée avec succès.");
+                    } else {
+                        System.out.println("La tâche " + id + " a déjà la priorité "
+                                + gestionnaire.trouverParId(id).getPriorite()
+                                + ". Aucune modification n'a été faite.");
+                    }
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
 
-        } else if (choix == 5) {
-            System.out.println("Au revoir !");
-            break;
+            } else if (choix == 5) {
+                System.out.println("Au revoir !");
+                break;
 
-        } else {
-            System.out.println("Veuillez choisir un numéro de la liste merci.");
+            } else {
+                System.out.println("Veuillez choisir un numéro de la liste merci.");
+            }
         }
-    }
         scanner.close();
-}
+    }
 
     // US-01 : Ajouter une tâche
     // L'utilisateur peut taper "annuler" à chaque question pour revenir au menu.

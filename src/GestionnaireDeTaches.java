@@ -29,7 +29,8 @@ public class GestionnaireDeTaches {
         return null;
     }
     // US-04 : modifie la priorité d'une tâche existante.
-    public void modifierPriorite(int id, String saisie) {
+    // Renvoie false si la tâche avait déjà cette priorité.
+    public boolean modifierPriorite(int id, String saisie) {
         Tache tache = trouverParId(id);
         if (tache == null) {
             throw new IllegalArgumentException("Aucune tâche avec l'identifiant " + id + ".");
@@ -38,7 +39,25 @@ public class GestionnaireDeTaches {
         if (priorite == null) {
             throw new IllegalArgumentException("Priorité invalide. Choisissez Basse, Normale ou Élevée.");
         }
+        if (tache.getPriorite().equals(priorite)) {
+            return false;
+        }
         tache.setPriorite(priorite);
+        return true;
+    }
+
+    // US-03 : marque une tâche existante comme terminée.
+    public Tache terminerTache(int id) {
+        Tache tache = trouverParId(id);
+        if (tache == null) {
+            throw new IllegalArgumentException("Aucune tâche avec l'identifiant " + id + ".");
+        }
+        if (tache.getStatut().equals("Terminée")) {
+            throw new IllegalStateException(
+                    "La tâche " + id + " est déjà terminée. Aucune modification n'est nécessaire.");
+        }
+        tache.setStatut("Terminée");
+        return tache;
     }
 
     // Accepte la saisie sans tenir compte de la casse ni des accents.
