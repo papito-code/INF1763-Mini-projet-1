@@ -21,7 +21,7 @@ public class Main {
 
         while (true) {
             System.out.print(
-                    "\n 1. Ajouter une tâche \n2. Afficher les tâches\n3. Terminer une tâche \n4. Modifier la priorité \n5. Quitter\nChoix : ");
+                    "\n1. Ajouter une tâche \n2. Afficher les tâches\n3. Terminer une tâche \n4. Modifier la priorité \n5. Quitter\nChoix : ");
             String texte = scanner.nextLine();
             int choix;
             try {
@@ -35,6 +35,8 @@ public class Main {
 
             //ajoute une tache
             if (choix == 1) {
+
+                System.out.println(); //saut a ligne
 
 
                 boolean annulation = false; //verifie si l'utilisateur a annulé la création de tâche
@@ -111,6 +113,9 @@ public class Main {
                     
                         // 4. Création de la tâche et confirmation
                         if (!annulation){
+
+                            System.out.println();
+
                             Tache tache = gestionnaire.ajouterTache(titre, priorite, echeance);
 
                             System.out.println("Tâche ajoutée avec succès.");
@@ -131,9 +136,11 @@ public class Main {
                           
 
             } else if (choix == 2) {
-                System.out.println("en cours de conception");
+                System.out.println();
+                gestionnaire.affichertaches();
 
             } else if (choix == 3) {
+                System.out.println();
                 System.out.print("Identifiant de la tâche : ");
                 int id;
                 try {
@@ -155,6 +162,7 @@ public class Main {
                 }
 
             } else if (choix == 4) {
+                System.out.println();
                 System.out.print("Identifiant de la tâche : ");
                 int id;
                 try {
@@ -182,6 +190,7 @@ public class Main {
                 }
 
             } else if (choix == 5) {
+                System.out.println();
                 System.out.println("Au revoir !");
                 break;
 

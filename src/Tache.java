@@ -47,4 +47,14 @@ public class Tache {
     public void setStatut(String statut) {
         this.statut = statut;
     }
+
+    //afficher une tache et ses propriétés
+    public void printTache(){
+        System.out.println("Tâche " +id+ " : "
+            + "\nTitre : " + titre
+            +  "\nPriorite : " + priorite
+            + "\nDate d'échéance : " + (echeance == null ? "Aucune" : echeance)
+            + "\nStatut : " + statut
+            );
+    }
 }
