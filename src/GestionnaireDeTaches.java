@@ -20,7 +20,7 @@ public class GestionnaireDeTaches {
     }
 
     // US-02 : Afficher la liste des taches
-    public void affichertaches(){
+    public void afficherTaches(){
         if (taches.size() == 0){
             System.out.println("Aucune tâche crée pour l'instant");
         }
