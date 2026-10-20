@@ -89,4 +89,26 @@ public class GestionnaireDeTaches {
             default:        return null;
         }
     }
+
+    // US-07 : retirer une echéance
+    public Tache retirerEcheance(int id) {
+        Tache tache = trouverParId(id);
+
+        if (tache == null) {
+            throw new IllegalArgumentException("Aucune tâche avec l'identifiant " + id + ".");
+        }
+
+        if (tache.getEcheance() == null) {
+            throw new IllegalStateException(
+                    "La tâche " + id + " n'a déjà pas d'échéance.");
+        }
+
+        tache.removeEcheance();
+
+        return tache;
+        
+    }
+
 }
+
+
