@@ -135,11 +135,12 @@ public class Main {
                 }
                    
                           
-
+            //choix 2 : Afficher les taches
             } else if (choix == 2) {
                 System.out.println();
                 gestionnaire.affichertaches();
-
+            
+            //choix 3: Marquer une tâche comme terminé
             } else if (choix == 3) {
                 System.out.println();
                 System.out.print("Identifiant de la tâche : ");
@@ -191,11 +192,62 @@ public class Main {
                 }
 
             } else if (choix == 5) {
-
+            
+            //choix 6 : modifier une échéance
             } else if (choix == 6) {
+                System.out.println();
+
+                System.out.print("Identifiant de la tâche : ");
+                int id;
+                try {
+                    id = Integer.parseInt(scanner.nextLine().trim());
+                } catch (NumberFormatException e) {
+                    System.out.println("Identifiant invalide : entrez un nombre entier positif.");
+                    continue;
+                }
+                if (id <= 0) {
+                    System.out.println("Identifiant invalide : entrez un nombre entier positif.");
+                    continue;
+                }
+
+                
+                LocalDate echeance = null;
+                boolean echeanceValide = false;
+                while (!echeanceValide) {
+                            System.out.print("Nouvelle Échéance: (AAAA-MM-JJ) [Entrée = aucune] : ");
+                            String saisie = scanner.nextLine().trim();
+                            if (saisie.isEmpty()) {
+                                echeanceValide = true;
+                            } else 
+                                try {
+                                    echeance = LocalDate.parse(saisie);
+                                    echeanceValide = true;
+                                    // Une date passée est acceptée (la tâche est en retard), mais on prévient
+                                    // l'utilisateur.
+                                    if (echeance.isBefore(LocalDate.now())) {
+                                        System.out.println(
+                                                "\nAttention : cette date d'échéance est déjà passée. L'échéance sera quand même modifier.");
+                                    }
+                                } catch (DateTimeParseException e) {
+                                    System.out.println("Erreur : date invalide. Utilisez le format AAAA-MM-JJ avec une date qui existe.");
+                                }
+                }
+
+                System.out.println();
+
+                try {
+                    Tache tache = gestionnaire.modifierEcheance(id, echeance);
+                    System.out.println("La tâche " + id + " (« " + tache.getTitre()
+                            + " ») a maintenant pour nouvelle echeance : " + (tache.getEcheance() == null ? "aucune écheance": tache.getEcheance()));
+                } catch (IllegalArgumentException | IllegalStateException e) {
+                    System.out.println(e.getMessage());
+                }
+
+                
             
             //choix 7 : retirer une échéance
             } else if (choix == 7) {
+                
                 System.out.println();
                 System.out.print("Identifiant de la tâche : ");
                 int id;
