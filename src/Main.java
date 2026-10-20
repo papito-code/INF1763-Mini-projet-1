@@ -3,7 +3,7 @@ import java.time.format.DateTimeParseException;
 import java.nio.charset.Charset;
 import java.util.Scanner;
 
-import javax.swing.plaf.TreeUI;
+
 
 public class Main {
 
@@ -138,9 +138,8 @@ public class Main {
             //choix 2 : Afficher les taches
             } else if (choix == 2) {
                 System.out.println();
-                gestionnaire.affichertaches();
-            
-            //choix 3: Marquer une tâche comme terminé
+                gestionnaire.afficherTaches();
+
             } else if (choix == 3) {
                 System.out.println();
                 System.out.print("Identifiant de la tâche : ");
