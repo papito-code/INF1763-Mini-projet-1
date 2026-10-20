@@ -3,7 +3,7 @@ import java.time.format.DateTimeParseException;
 import java.nio.charset.Charset;
 import java.util.Scanner;
 
-import javax.swing.plaf.TreeUI;
+
 
 public class Main {
 
@@ -138,7 +138,7 @@ public class Main {
 
             } else if (choix == 2) {
                 System.out.println();
-                gestionnaire.affichertaches();
+                gestionnaire.afficherTaches();
 
             } else if (choix == 3) {
                 System.out.println();
