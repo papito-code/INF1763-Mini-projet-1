@@ -3,6 +3,8 @@ import java.time.format.DateTimeParseException;
 import java.nio.charset.Charset;
 import java.util.Scanner;
 
+
+
 public class Main {
 
     public static void main(String[] args) {
@@ -19,7 +21,7 @@ public class Main {
 
         while (true) {
             System.out.print(
-                    "1. Ajouter une tâche \n2. Afficher les tâches\n3. Terminer une tâche \n4. Modifier la priorité \n5. Quitter\nChoix : ");
+                    "\n1. Ajouter une tâche \n2. Afficher les tâches\n3. Terminer une tâche \n4. Modifier la priorité \n5. Quitter\nChoix : ");
             String texte = scanner.nextLine();
             int choix;
             try {
@@ -30,13 +32,115 @@ public class Main {
 
                 continue;
             }
+
+            //ajoute une tache
             if (choix == 1) {
-                ajouterTache(scanner, gestionnaire);
+
+                System.out.println(); //saut a ligne
+
+
+                boolean annulation = false; //verifie si l'utilisateur a annulé la création de tâche
+
+                // 1. Le titre : obligatoire
+                String titre = "";
+                while (titre.isEmpty()) {
+                    System.out.print("Titre : ");
+                    titre = scanner.nextLine().trim();
+                    if (titre.equalsIgnoreCase("annuler")) {
+                        System.out.println("Ajout annulé.");
+                        annulation = true;
+                        break;
+
+                    }
+                    if (titre.isEmpty()) {
+                        System.out.println("Erreur : le titre est obligatoire.");
+                    }
+                }
+
+                // 2. La priorité : Normale si l'utilisateur appuie sur Entrée
+                if (!annulation){
+                    String priorite = null;
+                    while (priorite == null) {
+                        // On accepte le numéro ou le nom : le numéro évite les problèmes
+                        // d'accents dans la console Windows.
+                        System.out.print("Priorité (1 = Basse, 2 = Normale, 3 = Élevée) [Entrée = Normale] : ");
+                        String saisie = scanner.nextLine().trim();
+                        if (saisie.equalsIgnoreCase("annuler")) {
+                            System.out.println("Ajout annulé.");
+                            annulation = true;
+                            break;
+                        }
+                        if (saisie.isEmpty() || saisie.equals("2") || saisie.equalsIgnoreCase("normale")) {
+                            priorite = "Normale";
+                        } else if (saisie.equals("1") || saisie.equalsIgnoreCase("basse")) {
+                            priorite = "Basse";
+                        } else if (saisie.equals("3") || saisie.equalsIgnoreCase("élevée") || saisie.equalsIgnoreCase("elevee")) {
+                            priorite = "Élevée";
+                        } else {
+                            System.out.println("Erreur : choisissez 1 (Basse), 2 (Normale) ou 3 (Élevée).");
+                        }
+                    }
+
+                    // 3. L'échéance : facultative, au format AAAA-MM-JJ
+                    if (!annulation){
+                        LocalDate echeance = null;
+                        boolean echeanceValide = false;
+                        while (!echeanceValide) {
+                            System.out.print("Échéance (AAAA-MM-JJ) [Entrée = aucune] : ");
+                            String saisie = scanner.nextLine().trim();
+                            if (saisie.equalsIgnoreCase("annuler")) {
+                                System.out.println("Ajout annulé.");
+                                annulation = true;
+                                break; 
+                            }
+                            if (saisie.isEmpty()) {
+                                echeanceValide = true;
+                            } else 
+                                try {
+                                    echeance = LocalDate.parse(saisie);
+                                    echeanceValide = true;
+                                    // Une date passée est acceptée (la tâche est en retard), mais on prévient
+                                    // l'utilisateur.
+                                    if (echeance.isBefore(LocalDate.now())) {
+                                        System.out.println(
+                                                "Attention : cette date d'échéance est déjà passée. La tâche sera quand même créée.");
+                                    }
+                                } catch (DateTimeParseException e) {
+                                    System.out.println("Erreur : date invalide. Utilisez le format AAAA-MM-JJ avec une date qui existe.");
+                                }
+                            }
+
+                    
+                        // 4. Création de la tâche et confirmation
+                        if (!annulation){
+
+                            System.out.println();
+
+                            Tache tache = gestionnaire.ajouterTache(titre, priorite, echeance);
+
+                            System.out.println("Tâche ajoutée avec succès.");
+                            System.out.println("Identifiant : " + tache.getId());
+                            System.out.println("Titre : " + tache.getTitre());
+                            System.out.println("Priorité : " + tache.getPriorite());
+                            if (tache.getEcheance() == null) {
+                                System.out.println("Échéance : Aucune");
+                            } else {
+                                System.out.println("Échéance : " + tache.getEcheance());
+                            }
+                            System.out.println("Statut : " + tache.getStatut());
+                            System.out.println();
+                        }
+                    }
+                }
+                   
+                          
 
             } else if (choix == 2) {
-                System.out.println("en cours de conception");
+                System.out.println();
+                gestionnaire.afficherTaches();
 
             } else if (choix == 3) {
+                System.out.println();
                 System.out.print("Identifiant de la tâche : ");
                 int id;
                 try {
@@ -58,6 +162,7 @@ public class Main {
                 }
 
             } else if (choix == 4) {
+                System.out.println();
                 System.out.print("Identifiant de la tâche : ");
                 int id;
                 try {
@@ -74,7 +179,7 @@ public class Main {
                 String priorite = scanner.nextLine();
                 try {
                     if (gestionnaire.modifierPriorite(id, priorite)) {
-                        System.out.println("Priorité de la tâche " + id + " modifiée avec succès.");
+                     
                     } else {
                         System.out.println("La tâche " + id + " a déjà la priorité "
                                 + gestionnaire.trouverParId(id).getPriorite()
@@ -85,6 +190,7 @@ public class Main {
                 }
 
             } else if (choix == 5) {
+                System.out.println();
                 System.out.println("Au revoir !");
                 break;
 
@@ -92,93 +198,9 @@ public class Main {
                 System.out.println("Veuillez choisir un numéro de la liste merci.");
             }
         }
+
         scanner.close();
     }
 
-    // US-01 : Ajouter une tâche
-    // L'utilisateur peut taper "annuler" à chaque question pour revenir au menu.
-    public static void ajouterTache(Scanner scanner, GestionnaireDeTaches gestionnaire) {
-        System.out.println();
-        System.out.println("AJOUTER UNE TÂCHE (tapez annuler pour revenir au menu)");
-
-        // 1. Le titre : obligatoire
-        String titre = "";
-        while (titre.isEmpty()) {
-            System.out.print("Titre : ");
-            titre = scanner.nextLine().trim();
-            if (titre.equalsIgnoreCase("annuler")) {
-                System.out.println("Ajout annulé.");
-                return;
-            }
-            if (titre.isEmpty()) {
-                System.out.println("Erreur : le titre est obligatoire.");
-            }
-        }
-
-        // 2. La priorité : Normale si l'utilisateur appuie sur Entrée
-        String priorite = null;
-        while (priorite == null) {
-            // On accepte le numéro ou le nom : le numéro évite les problèmes
-            // d'accents dans la console Windows.
-            System.out.print("Priorité (1 = Basse, 2 = Normale, 3 = Élevée) [Entrée = Normale] : ");
-            String saisie = scanner.nextLine().trim();
-            if (saisie.equalsIgnoreCase("annuler")) {
-                System.out.println("Ajout annulé.");
-                return;
-            }
-            if (saisie.isEmpty() || saisie.equals("2") || saisie.equalsIgnoreCase("normale")) {
-                priorite = "Normale";
-            } else if (saisie.equals("1") || saisie.equalsIgnoreCase("basse")) {
-                priorite = "Basse";
-            } else if (saisie.equals("3") || saisie.equalsIgnoreCase("élevée") || saisie.equalsIgnoreCase("elevee")) {
-                priorite = "Élevée";
-            } else {
-                System.out.println("Erreur : choisissez 1 (Basse), 2 (Normale) ou 3 (Élevée).");
-            }
-        }
-
-        // 3. L'échéance : facultative, au format AAAA-MM-JJ
-        LocalDate echeance = null;
-        boolean echeanceValide = false;
-        while (!echeanceValide) {
-            System.out.print("Échéance (AAAA-MM-JJ) [Entrée = aucune] : ");
-            String saisie = scanner.nextLine().trim();
-            if (saisie.equalsIgnoreCase("annuler")) {
-                System.out.println("Ajout annulé.");
-                return;
-            }
-            if (saisie.isEmpty()) {
-                echeanceValide = true;
-            } else {
-                try {
-                    echeance = LocalDate.parse(saisie);
-                    echeanceValide = true;
-                    // Une date passée est acceptée (la tâche est en retard), mais on prévient
-                    // l'utilisateur.
-                    if (echeance.isBefore(LocalDate.now())) {
-                        System.out.println(
-                                "Attention : cette date d'échéance est déjà passée. La tâche sera quand même créée.");
-                    }
-                } catch (DateTimeParseException e) {
-                    System.out
-                            .println("Erreur : date invalide. Utilisez le format AAAA-MM-JJ avec une date qui existe.");
-                }
-            }
-        }
-
-        // 4. Création de la tâche et confirmation
-        Tache tache = gestionnaire.ajouterTache(titre, priorite, echeance);
-
-        System.out.println("Tâche ajoutée avec succès.");
-        System.out.println("Identifiant : " + tache.getId());
-        System.out.println("Titre : " + tache.getTitre());
-        System.out.println("Priorité : " + tache.getPriorite());
-        if (tache.getEcheance() == null) {
-            System.out.println("Échéance : Aucune");
-        } else {
-            System.out.println("Échéance : " + tache.getEcheance());
-        }
-        System.out.println("Statut : " + tache.getStatut());
-        System.out.println();
-    }
 }
+

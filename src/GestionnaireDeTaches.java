@@ -7,7 +7,7 @@ public class GestionnaireDeTaches {
     private ArrayList<Tache> taches = new ArrayList<>();
     private int prochainId = 1;
 
-    // Crée une tâche avec le prochain identifiant et l'ajouter à la liste.
+    // US-01 : Crée une tâche avec le prochain identifiant et l'ajouter à la liste.
     public Tache ajouterTache(String titre, String priorite, LocalDate echeance) {
         Tache tache = new Tache(prochainId, titre, priorite, echeance);
         taches.add(tache);
@@ -19,6 +19,19 @@ public class GestionnaireDeTaches {
         return taches;
     }
 
+    // US-02 : Afficher la liste des taches
+    public void afficherTaches(){
+        if (taches.size() == 0){
+            System.out.println("Aucune tâche crée pour l'instant");
+        }
+        else{
+            for (Tache tache : taches){
+                tache.printTache();
+                System.out.println();
+            }
+        }
+    }
+
     // Renvoie la tâche qui a cet identifiant, ou null si elle n'existe pas.
     public Tache trouverParId(int id) {
         for (Tache tache : taches) {
@@ -28,6 +41,21 @@ public class GestionnaireDeTaches {
         }
         return null;
     }
+
+    // US-03 : marque une tâche existante comme terminée.
+    public Tache terminerTache(int id) {
+        Tache tache = trouverParId(id);
+        if (tache == null) {
+            throw new IllegalArgumentException("Aucune tâche avec l'identifiant " + id + ".");
+        }
+        if (tache.getStatut().equals("Terminée")) {
+            throw new IllegalStateException(
+                    "La tâche " + id + " est déjà terminée. Aucune modification n'est nécessaire.");
+        }
+        tache.setStatut("Terminée");
+        return tache;
+    }
+
     // US-04 : modifie la priorité d'une tâche existante.
     // Renvoie false si la tâche avait déjà cette priorité.
     public boolean modifierPriorite(int id, String saisie) {
@@ -44,20 +72,6 @@ public class GestionnaireDeTaches {
         }
         tache.setPriorite(priorite);
         return true;
-    }
-
-    // US-03 : marque une tâche existante comme terminée.
-    public Tache terminerTache(int id) {
-        Tache tache = trouverParId(id);
-        if (tache == null) {
-            throw new IllegalArgumentException("Aucune tâche avec l'identifiant " + id + ".");
-        }
-        if (tache.getStatut().equals("Terminée")) {
-            throw new IllegalStateException(
-                    "La tâche " + id + " est déjà terminée. Aucune modification n'est nécessaire.");
-        }
-        tache.setStatut("Terminée");
-        return tache;
     }
 
     // Accepte la saisie sans tenir compte de la casse ni des accents.
