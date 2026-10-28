@@ -270,7 +270,7 @@ public class Main {
                     System.out.println(e.getMessage());
                 }
 
-            //sauvegarder
+            //choix 8 : sauvegarder
             }else if (choix == 8) {
                   System.out.println();
                   fichier.sauvegarder( gestionnaire.getTaches() );
