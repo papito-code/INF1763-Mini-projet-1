@@ -1,6 +1,8 @@
 import java.nio.charset.Charset;
+import java.sql.Array;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -21,6 +23,10 @@ public class Main {
         FichierTaches fichier = new FichierTaches();
 
         while (true) {
+            
+            // liste des taches
+            ArrayList<Tache> taches = gestionnaire.getTaches();
+
             System.out.print(
                     "\n1. Ajouter une tâche \n2. Afficher les tâches \n3. Terminer une tâche \n4. Modifier la priorité \n5. Attribuer une échéance \n6. Modifier une échéance \n7. Retirer une échéance \n8.Sauvergarder \n9. Quitter \n\nChoix : "
                 );
@@ -141,20 +147,17 @@ public class Main {
                 System.out.println();
                 gestionnaire.afficherTaches();
 
+            //choix == 3 terminer une tache
             } else if (choix == 3) {
-                System.out.println();
-                System.out.print("Identifiant de la tâche : ");
-                int id;
-                try {
-                    id = Integer.parseInt(scanner.nextLine().trim());
-                } catch (NumberFormatException e) {
-                    System.out.println("Identifiant invalide : entrez un nombre entier positif.");
+
+                // verifie si il y a des taches qui existe avant quoi que ce soit
+                if (taches.size() < 1) {
+                    System.out.println("\nAucune tâche crée pour l'instant");
                     continue;
                 }
-                if (id <= 0) {
-                    System.out.println("Identifiant invalide : entrez un nombre entier positif.");
-                    continue;
-                }
+
+                int id = askId(taches, scanner);
+
                 try {
                     Tache tache = gestionnaire.terminerTache(id);
                     System.out.println("La tâche " + id + " (« " + tache.getTitre()
@@ -162,21 +165,19 @@ public class Main {
                 } catch (IllegalArgumentException | IllegalStateException e) {
                     System.out.println(e.getMessage());
                 }
-
+            
+            // choix == 4 modifier une priorite
             } else if (choix == 4) {
-                System.out.println();
-                System.out.print("Identifiant de la tâche : ");
-                int id;
-                try {
-                    id = Integer.parseInt(scanner.nextLine().trim());
-                } catch (NumberFormatException e) {
-                    System.out.println("Identifiant invalide : entrez un nombre entier positif.");
+
+                // verifie si il y a des taches qui existe avant quoi que ce soit
+                if (taches.size() < 1) {
+                    System.out.println("\nAucune tâche crée pour l'instant");
                     continue;
                 }
-                if (id <= 0) {
-                    System.out.println("Identifiant invalide : entrez un nombre entier positif.");
-                    continue;
-                }
+
+                // demande et verifie la validite de l'id
+                int id = askId(taches, scanner);
+
                 System.out.print("Nouvelle priorité (Basse, Normale ou Élevée) : ");
                 String priorite = scanner.nextLine();
                 try {
@@ -190,27 +191,24 @@ public class Main {
                 } catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
                 }
-
+            
+            //attribuer une echeance
             } else if (choix == 5) {
+                
             
             //choix 6 : modifier une échéance
             } else if (choix == 6) {
+                // verifie si il y a des taches qui existe avant quoi que ce soit
+                if (taches.size() < 1) {
+                    System.out.println("\nAucune tâche crée pour l'instant");
+                    continue;
+                }
+
                 System.out.println();
 
-                System.out.print("Identifiant de la tâche : ");
-                int id;
-                try {
-                    id = Integer.parseInt(scanner.nextLine().trim());
-                } catch (NumberFormatException e) {
-                    System.out.println("Identifiant invalide : entrez un nombre entier positif.");
-                    continue;
-                }
-                if (id <= 0) {
-                    System.out.println("Identifiant invalide : entrez un nombre entier positif.");
-                    continue;
-                }
+                // demande et verifie la validite de l'id
+                int id = askId(taches, scanner);
 
-                
                 LocalDate echeance = null;
                 boolean echeanceValide = false;
                 while (!echeanceValide) {
@@ -247,20 +245,16 @@ public class Main {
             
             //choix 7 : retirer une échéance
             } else if (choix == 7) {
-                
+
+                // verifie si il y a des taches qui existe avant quoi que ce soit
+                if (taches.size() < 1) {
+                    System.out.println("\nAucune tâche crée pour l'instant");
+                    continue;
+                }
+
+                // demande et verifie la validite de l'id
+                int id = askId(taches, scanner);
                 System.out.println();
-                System.out.print("Identifiant de la tâche : ");
-                int id;
-                try {
-                    id = Integer.parseInt(scanner.nextLine().trim());
-                } catch (NumberFormatException e) {
-                    System.out.println("Identifiant invalide : entrez un nombre entier positif.");
-                    continue;
-                }
-                if (id <= 0) {
-                    System.out.println("Identifiant invalide : entrez un nombre entier positif.");
-                    continue;
-                }
 
                 try {
                     Tache tache = gestionnaire.retirerEcheance(id);
@@ -286,6 +280,48 @@ public class Main {
         }
 
         scanner.close();
+    }
+
+    public static int askId( ArrayList<Tache> taches, Scanner scanner) {
+
+
+
+
+
+        boolean idValide = false;
+        int id = 0;
+
+        while (!idValide){
+            System.out.print("Identifiant de la tâche : ");
+            try {
+                id = Integer.parseInt(scanner.nextLine().trim());
+            } catch (NumberFormatException e) {
+                System.out.println("Identifiant invalide : entrez un nombre entier positif.");
+                continue;
+            }
+            if (id <= 0) {
+                System.out.println("Identifiant invalide : entrez un nombre entier positif.");
+                continue;
+            }
+
+            // verifier la si la tache existe
+            try {
+                if (taches.get(id-1).getId() != id){
+                continue;
+                }
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("\nAcune tâche avec l'identifiant " + id + " Réesayez :");
+                System.out.println();
+                continue;
+            }
+            idValide = true;
+            
+        }
+
+        
+
+        return id;
+
     }
 
 }
