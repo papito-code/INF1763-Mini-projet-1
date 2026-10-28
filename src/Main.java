@@ -1,6 +1,6 @@
+import java.nio.charset.Charset;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.nio.charset.Charset;
 import java.util.Scanner;
 
 
@@ -18,10 +18,11 @@ public class Main {
         }
         Scanner scanner = new Scanner(System.in, encodage);
         GestionnaireDeTaches gestionnaire = new GestionnaireDeTaches();
+        FichierTaches fichier = new FichierTaches();
 
         while (true) {
             System.out.print(
-                    "\n1. Ajouter une tâche \n2. Afficher les tâches \n3. Terminer une tâche \n4. Modifier la priorité \n5. Attribuer une échéance \n6. Modifier une échéance \n7. Retirer une échéance \n8. Quitter \n\nChoix : "
+                    "\n1. Ajouter une tâche \n2. Afficher les tâches \n3. Terminer une tâche \n4. Modifier la priorité \n5. Attribuer une échéance \n6. Modifier une échéance \n7. Retirer une échéance \n8.Sauvergarder \n9. Quitter \n\nChoix : "
                 );
             String texte = scanner.nextLine();
             int choix;
@@ -269,9 +270,12 @@ public class Main {
                     System.out.println(e.getMessage());
                 }
 
+            //sauvegarder
+            }else if (choix == 8) {
+                  System.out.println();
+                  fichier.sauvegarder( gestionnaire.getTaches() );
 
-
-            } else if (choix == 8) {
+            } else if (choix == 9) {
                 System.out.println();
                 System.out.println("Au revoir !");
                 break;

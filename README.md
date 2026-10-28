@@ -22,8 +22,14 @@ Depuis la racine du projet :
     java -cp out Main
 
 ## Fonctionnalités
-Menu : ajouter, afficher, terminer une tâche, modifier la priorité, quitter.
-Les autres fonctionnalités (échéances, sauvegarde) arrivent à l'itération 2.
+Menu : ajouter, afficher, terminer une tâche, modifier la priorité, attribuer une échéance(pas encore fait), modifier une échéance(pas encore fait), retirer une echeance sauvegarder, quitter.
+Les autres fonctionnalités (échéances, rechargement des données) arrivent à l'itération 2.
 
 ## Fichier de données, limites connues
-À compléter à l'itération 2 (T-07).
+
+- **Nom et emplacement :** `taches.csv`, créé dans le dossier d'où l'application est lancée (la racine du projet). Il est ignoré par Git (`.gitignore`).
+- **Quand :** uniquement quand l'utilisateur choisit « Sauvegarder » dans le menu. Chaque sauvegarde remplace le contenu précédent du fichier.
+- **Format :** texte encodé en UTF-8, une tâche par ligne, 5 colonnes séparées par un point-virgule (`;`), dans cet ordre : identifiant;titre;priorité;échéance;statut
+- **Tâche sans échéance :** la colonne de l'échéance est laissée vide.
+- **Exemple de ligne :** `1;test;Basse;2000-10-15;À faire`
+- **Limite connue :** un titre contenant un point-virgule n'est pas géré.
