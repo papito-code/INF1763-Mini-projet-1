@@ -22,7 +22,8 @@ public class Main {
 
         while (true) {
             System.out.print(
-                    "\n1. Ajouter une tâche \n2. Afficher les tâches\n3. Terminer une tâche \n4. Modifier la priorité \n5. Sauvegarder\n6. Quitter\nChoix : "); // liste des choix du menu
+                    "\n1. Ajouter une tâche \n2. Afficher les tâches \n3. Terminer une tâche \n4. Modifier la priorité \n5. Attribuer une échéance \n6. Modifier une échéance \n7. Retirer une échéance \n8.Sauvergarder \n9. Quitter \n\nChoix : "
+                );
             String texte = scanner.nextLine();
             int choix;
             try {
@@ -190,11 +191,40 @@ public class Main {
                     System.out.println(e.getMessage());
                 }
 
-           }else if (choix == 5) {
+            } else if (choix == 5) {
+
+            } else if (choix == 6) {
+            
+            //choix 7 : retirer une échéance
+            } else if (choix == 7) {
+                System.out.println();
+                System.out.print("Identifiant de la tâche : ");
+                int id;
+                try {
+                    id = Integer.parseInt(scanner.nextLine().trim());
+                } catch (NumberFormatException e) {
+                    System.out.println("Identifiant invalide : entrez un nombre entier positif.");
+                    continue;
+                }
+                if (id <= 0) {
+                    System.out.println("Identifiant invalide : entrez un nombre entier positif.");
+                    continue;
+                }
+
+                try {
+                    Tache tache = gestionnaire.retirerEcheance(id);
+                    System.out.println("La tâche " + id + " (« " + tache.getTitre()
+                            + " ») est maintenant sans échéance. Échéance : Aucune.");
+                } catch (IllegalArgumentException | IllegalStateException e) {
+                    System.out.println(e.getMessage());
+                }
+
+            //sauvegarder
+            }else if (choix == 8) {
                   System.out.println();
                   fichier.sauvegarder( gestionnaire.getTaches() );
-                }
-            else if (choix == 6) {
+
+            } else if (choix == 9) {
                 System.out.println();
                 System.out.println("Au revoir !");
                 break;

@@ -57,4 +57,8 @@ public class Tache {
             + "\nStatut : " + statut
             );
     }
+
+    public void removeEcheance(){
+        this.echeance = null;
+    }
 }
