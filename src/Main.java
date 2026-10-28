@@ -1,6 +1,6 @@
+import java.nio.charset.Charset;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.nio.charset.Charset;
 import java.util.Scanner;
 
 
@@ -18,6 +18,7 @@ public class Main {
         }
         Scanner scanner = new Scanner(System.in, encodage);
         GestionnaireDeTaches gestionnaire = new GestionnaireDeTaches();
+        FichierTaches fichier = new FichierTaches();
 
         while (true) {
             System.out.print(
