@@ -22,7 +22,7 @@ Depuis la racine du projet :
     java -cp out Main
 
 ## Fonctionnalités
-Menu : ajouter, afficher, terminer une tâche, modifier la priorité, attribuer une échéance(pas encore fait), modifier une échéance(pas encore fait), retirer une echeance sauvegarder, quitter.
+Menu : ajouter, afficher, terminer une tâche, modifier la priorité, attribuer une échéance(pas encore fait), modifier une échéance, retirer une echeance sauvegarder, quitter.
 Les autres fonctionnalités (échéances, rechargement des données) arrivent à l'itération 2.
 
 ## Fichier de données, limites connues
