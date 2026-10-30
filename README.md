@@ -23,7 +23,7 @@ Depuis la racine du projet :
 
 ## Fonctionnalités
 Menu : ajouter, afficher, terminer une tâche, modifier la priorité, attribuer une échéance(pas encore fait), modifier une échéance, retirer une echeance sauvegarder, quitter.
-Les autres fonctionnalités (échéances, rechargement des données) arrivent à l'itération 2.
+Au démarrage, les tâches sauvegardées sont rechargées automatiquement. L'attribution d'une échéance à une tâche existante et la vérification complète du fichier de données au chargement (identifiants en double, par exemple) arrivent à l'itération 2.
 
 ## Fichier de données, limites connues
 
@@ -34,4 +34,4 @@ Les autres fonctionnalités (échéances, rechargement des données) arrivent à
 - **Exemple de ligne :** `1;test;Basse;2000-10-15;À faire`
 - **Limite connue :** un titre contenant un point-virgule n'est pas géré.
 - **Fichier absent :** si `taches.csv` n'existe pas au démarrage, l'application affiche « Aucun fichier de données trouvé (taches.csv). Démarrage avec une liste vide. » et démarre avec une liste vide. Le fichier n'est créé qu'à la première sauvegarde.
-- **Limite connue :** le rechargement des données au démarrage n'est pas encore disponible (il sera livré avec US-09).
+- **Rechargement au démarrage :** si `taches.csv` existe, les tâches sont rechargées automatiquement avant l'affichage du menu et l'application affiche le nombre de tâches chargées (« Chargement réussi : N tâche(s) chargée(s) depuis taches.csv. »). Si le fichier est illisible ou contient une ligne mal formée, l'application affiche la cause (avec le numéro de la ligne) puis s'arrête sans modifier le fichier.
