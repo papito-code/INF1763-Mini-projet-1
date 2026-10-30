@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.sql.Array;
 import java.time.LocalDate;
@@ -21,6 +22,24 @@ public class Main {
         Scanner scanner = new Scanner(System.in, encodage);
         GestionnaireDeTaches gestionnaire = new GestionnaireDeTaches();
         FichierTaches fichier = new FichierTaches();
+
+        if (!fichier.fichierExiste()) {
+            System.out.println("Aucun fichier de données trouvé (taches.csv). Démarrage avec une liste vide.");
+        } else {
+            try {
+                gestionnaire.chargerTaches(fichier.charger());
+                System.out.println("Chargement réussi : " + gestionnaire.getTaches().size()
+                        + " tâche(s) chargée(s) depuis taches.csv.");
+            } catch (IllegalArgumentException e) {
+                System.out.println("Impossible de charger taches.csv : " + e.getMessage()
+                        + ". Le fichier n'a pas été modifié. Arrêt de l'application.");
+                return;
+            } catch (IOException e) {
+                System.out.println("Impossible de charger taches.csv : erreur de lecture du fichier."
+                        + " Le fichier n'a pas été modifié. Arrêt de l'application.");
+                return;
+            }
+        }
 
         while (true) {
             

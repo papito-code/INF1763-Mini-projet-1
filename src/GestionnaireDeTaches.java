@@ -123,6 +123,18 @@ public class GestionnaireDeTaches {
         
     }
 
+    // US-09 : remplace la liste par les tâches rechargées depuis le fichier.
+    public void chargerTaches(ArrayList<Tache> tachesChargees) {
+        taches.clear();
+        taches.addAll(tachesChargees);
+        prochainId = 1;
+        for (Tache tache : taches) {
+            if (tache.getId() >= prochainId) {
+                prochainId = tache.getId() + 1;
+            }
+        }
+    }
+
 
 
 }
