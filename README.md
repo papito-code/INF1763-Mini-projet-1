@@ -33,3 +33,5 @@ Les autres fonctionnalités (échéances, rechargement des données) arrivent à
 - **Tâche sans échéance :** la colonne de l'échéance est laissée vide.
 - **Exemple de ligne :** `1;test;Basse;2000-10-15;À faire`
 - **Limite connue :** un titre contenant un point-virgule n'est pas géré.
+- **Fichier absent :** si `taches.csv` n'existe pas au démarrage, l'application affiche « Aucun fichier de données trouvé (taches.csv). Démarrage avec une liste vide. » et démarre avec une liste vide. Le fichier n'est créé qu'à la première sauvegarde.
+- **Limite connue :** le rechargement des données au démarrage n'est pas encore disponible (il sera livré avec US-09).
