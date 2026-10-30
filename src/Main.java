@@ -22,6 +22,10 @@ public class Main {
         GestionnaireDeTaches gestionnaire = new GestionnaireDeTaches();
         FichierTaches fichier = new FichierTaches();
 
+        if (!fichier.fichierExiste()) {
+            System.out.println("Aucun fichier de données trouvé (taches.csv). Démarrage avec une liste vide.");
+        }
+
         while (true) {
             
             // liste des taches
