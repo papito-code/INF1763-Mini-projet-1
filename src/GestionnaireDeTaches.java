@@ -90,6 +90,23 @@ public class GestionnaireDeTaches {
         }
     }
 
+    // US-05 : attribuer une échéance à une tâche qui n'en a pas encore.
+    public Tache attribuerEcheance(int id, LocalDate echeance) {
+        Tache tache = trouverParId(id);
+
+        if (tache == null) {
+            throw new IllegalArgumentException("Aucune tâche avec l'identifiant " + id + ".");
+        }
+
+        if (tache.getEcheance() != null) {
+            throw new IllegalStateException("La tâche " + id + " a déjà une échéance (" + tache.getEcheance()
+                    + "). Utilisez l'option 6 pour la modifier.");
+        }
+
+        tache.setEcheance(echeance);
+        return tache;
+    }
+
     //US-06 : Modifier une échéance
     public Tache modifierEcheance(int id, LocalDate echeance){
 
