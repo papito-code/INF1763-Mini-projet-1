@@ -32,3 +32,25 @@ Après chaque scénario exécuté, l'état des tâches a été contrôlé avec l
 | 10 | Ajout après rechargement | Ajouter une tâche après le redémarrage du scénario 9 | Identifiant distinct de ceux déjà chargés | Non exécuté : fonctionnalité pas encore livrée | À exécuter |
 | 11 | Fichier absent ou mal formé | Démarrer sans fichier ; démarrer avec un fichier de données mal formé | Liste vide dans le premier cas ; message et démarrage interrompu sans modifier le fichier dans le second | Non exécuté : fonctionnalité pas encore livrée | À exécuter |
 | 12 | Échec d'écriture | Sauvegarder alors que le fichier est en lecture seule | Échec signalé, aucun message de réussite | Non exécuté : fonctionnalité pas encore livrée | À exécuter |
+
+## Scénario 7 : Modifier la priorité (US-04)
+
+| # | Données saisies (option 4) | Résultat attendu | Résultat observé | Conclusion |
+|---|---|---|---|---|
+| 7.1 | id `1`, priorité `Basse` | Priorité modifiée, message de succès | Priorité modifiée, message de succès | Réussi |
+| 7.2 | id `1`, priorité `ÉLEVÉE` | Accepté (casse et accents ignorés), devient « Élevée » | Accepté, devient « Élevée » | Réussi |
+| 7.3 | id `1`, priorité `elevee` | Accepté, devient « Élevée » | Accepté | Réussi |
+| 7.4 | id `1`, priorité `urgente` | Refusé, priorité actuelle inchangée | Message « Priorité invalide… », priorité inchangée | Réussi |
+| 7.5 | id `999` | Message « Aucune tâche avec l'identifiant 999 », données conservées | Message affiché, données conservées | Réussi |
+| 7.6 | id `0` | Refusé : « Identifiant invalide » | Message affiché | Réussi |
+| 7.7 | id `-3` | Refusé : « Identifiant invalide » | Message affiché | Réussi |
+| 7.8 | id `abc` | Refusé : « Identifiant invalide » | Message affiché | Réussi |
+| 7.9 | id `1`, priorité identique à l'actuelle | Message « a déjà la priorité… », aucune modification | Message affiché | Réussi |
+
+
+## Scénario 12 : Échec d'écriture lors de la sauvegarde (US-12)
+
+| # | Données / action | Résultat attendu | Résultat observé | Conclusion |
+|---|---|---|---|---|
+| 12.1 | Relancer, ajouter une tâche, option 8 avec `taches.csv` en lecture seule | Message d'échec clair avec la raison, **aucun** message « Sauvegarde réussie » | Message d'erreur constaté | Réussi |
+| 12.2 | `chmod 644 taches.csv`, relancer, ajouter une tâche, option 8 | « Sauvegarde réussie : N tâche(s) enregistrée(s). » | Sauvergarde réussi | Réussi |
