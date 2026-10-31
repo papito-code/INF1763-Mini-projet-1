@@ -54,3 +54,4 @@ Après chaque scénario exécuté, l'état des tâches a été contrôlé avec l
 |---|---|---|---|---|
 | 12.1 | Relancer, ajouter une tâche, option 8 avec `taches.csv` en lecture seule | Message d'échec clair avec la raison, **aucun** message « Sauvegarde réussie » | Message d'erreur constaté | Réussi |
 | 12.2 | `chmod 644 taches.csv`, relancer, ajouter une tâche, option 8 | « Sauvegarde réussie : N tâche(s) enregistrée(s). » | Sauvergarde réussi | Réussi |
+---

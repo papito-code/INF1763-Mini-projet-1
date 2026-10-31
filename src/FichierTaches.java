@@ -20,7 +20,7 @@ public class FichierTaches {
             Files.write(Path.of("taches.csv"), saves, StandardCharsets.UTF_8);
             System.out.println("Sauvegarde réussie : " + saves.size() + " tâche(s) enregistrée(s).");
         } catch (IOException e) {
-            System.out.println("Échec de la sauvegarde : impossible d'écrire dans taches.csv ("
+            System.out.println("Échec de la sauvegarde : Impossible d'écrire dans taches.csv ("
                     + e.getMessage() + "). Vos données n'ont pas été sauvegardées.");
         }
     }
