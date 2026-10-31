@@ -50,8 +50,7 @@ Après chaque scénario exécuté, l'état des tâches a été contrôlé avec l
 
 ## Scénario 12 : Échec d'écriture lors de la sauvegarde (US-12)
 
-| # | Données / action | Résultat attendu | Résultat observé | Conclusion |
-|---|---|---|---|---|
-| 12.1 | Relancer, ajouter une tâche, option 8 avec `taches.csv` en lecture seule | Message d'échec clair avec la raison, **aucun** message « Sauvegarde réussie » | Message d'erreur constaté | Réussi |
-| 12.2 | `chmod 644 taches.csv`, relancer, ajouter une tâche, option 8 | « Sauvegarde réussie : N tâche(s) enregistrée(s). » | Sauvergarde réussi | Réussi |
----
+| # | Données / action | Résultat attendu | Résultat observé         | Conclusion |
+|---|---|---|--------------------------|---|
+| 12.1 | Relancer, ajouter une tâche, option 8 avec `taches.csv` en lecture seule | Message d'échec clair avec la raison, **aucun** message « Sauvegarde réussie » | Message d'echec constaté | Réussi |
+| 12.2 | `chmod 644 taches.csv`, relancer, ajouter une tâche, option 8 | « Sauvegarde réussie : N tâche(s) enregistrée(s). » | Sauvergarde réussi       | Réussi |
