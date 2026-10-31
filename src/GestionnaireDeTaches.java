@@ -90,6 +90,20 @@ public class GestionnaireDeTaches {
         }
     }
 
+    //US-06 : Modifier une échéance
+    public Tache modifierEcheance(int id, LocalDate echeance){
+
+        Tache tache = trouverParId(id);
+
+        if (tache == null) {
+            throw new IllegalArgumentException("Aucune tâche avec l'identifiant " + id + ".");
+        }
+
+        tache.setEcheance(echeance);
+        return tache;
+
+    }
+
     // US-07 : retirer une echéance
     public Tache retirerEcheance(int id) {
         Tache tache = trouverParId(id);
@@ -108,6 +122,20 @@ public class GestionnaireDeTaches {
         return tache;
         
     }
+
+    // US-09 : remplace la liste par les tâches rechargées depuis le fichier.
+    public void chargerTaches(ArrayList<Tache> tachesChargees) {
+        taches.clear();
+        taches.addAll(tachesChargees);
+        prochainId = 1;
+        for (Tache tache : taches) {
+            if (tache.getId() >= prochainId) {
+                prochainId = tache.getId() + 1;
+            }
+        }
+    }
+
+
 
 }
 
