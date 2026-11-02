@@ -5,8 +5,11 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 public class FichierTaches {
-    
+
     private static final Path CHEMIN = Path.of("taches.csv");
 
     public boolean fichierExiste() {
@@ -14,7 +17,8 @@ public class FichierTaches {
     }
 
     public String tacheEnLigne(Tache tache) {
-        return tache.getId() + ";" + tache.getTitre() + ";" + tache.getPriorite() + ";" + (tache.getEcheance() == null ? "" : tache.getEcheance()) + ";" + tache.getStatut();
+        return tache.getId() + ";" + tache.getTitre() + ";" + tache.getPriorite() + ";"
+                + (tache.getEcheance() == null ? "" : tache.getEcheance()) + ";" + tache.getStatut();
     }
 
     public void sauvegarder(ArrayList<Tache> taches) {
@@ -23,7 +27,7 @@ public class FichierTaches {
         for (Tache tache : taches) {
             saves.add(tacheEnLigne(tache));
         }
-        
+
         try {
             Files.write(CHEMIN, saves, StandardCharsets.UTF_8);
             System.out.println("Sauvegarde réussie : " + saves.size() + " tâche(s) enregistrée(s).");
@@ -32,10 +36,11 @@ public class FichierTaches {
                     + e.getMessage() + "). Vos données n'ont pas été sauvegardées.");
         }
     }
-    
+
     // Lève IllegalArgumentException avec le numéro de ligne si une ligne est mal formée.
     public ArrayList<Tache> charger() throws IOException {
         ArrayList<Tache> taches = new ArrayList<>();
+        Set<Integer> identifiantsVus = new HashSet<>();
         int numero = 0;
 
         for (String ligne : Files.readAllLines(CHEMIN, StandardCharsets.UTF_8)) {
@@ -43,7 +48,12 @@ public class FichierTaches {
             if (ligne.isBlank()) {
                 continue;
             }
-            taches.add(ligneEnTache(ligne, numero));
+            Tache tache = ligneEnTache(ligne, numero);
+            if (!identifiantsVus.add(tache.getId())) {
+                throw new IllegalArgumentException(
+                        "ligne " + numero + ", identifiant en double (" + tache.getId() + ")");
+            }
+            taches.add(tache);
         }
         return taches;
     }
@@ -51,7 +61,8 @@ public class FichierTaches {
     private Tache ligneEnTache(String ligne, int numero) {
         String[] champs = ligne.split(";", -1);
         if (champs.length != 5) {
-            throw new IllegalArgumentException("ligne " + numero + ", 5 colonnes attendues au lieu de " + champs.length);
+            throw new IllegalArgumentException(
+                    "ligne " + numero + ", 5 colonnes attendues au lieu de " + champs.length);
         }
 
         int id;
@@ -62,6 +73,10 @@ public class FichierTaches {
         }
         if (id <= 0) {
             throw new IllegalArgumentException("ligne " + numero + ", identifiant invalide");
+        }
+
+        if (champs[1].isBlank()) {
+            throw new IllegalArgumentException("ligne " + numero + ", titre vide");
         }
 
         String priorite = champs[2];
