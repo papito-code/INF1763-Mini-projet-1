@@ -14,22 +14,23 @@ public class FichierTaches {
     }
 
     public String tacheEnLigne(Tache tache) {
-        return tache.getId() + ";" + tache.getTitre() + ";" + tache.getPriorite() +";" + (tache.getEcheance()==null ? "":tache.getEcheance()) +";" + tache.getStatut();
+        return tache.getId() + ";" + tache.getTitre() + ";" + tache.getPriorite() + ";" + (tache.getEcheance() == null ? "" : tache.getEcheance()) + ";" + tache.getStatut();
     }
-    public void sauvegarder(ArrayList<Tache> taches){
+
+    public void sauvegarder(ArrayList<Tache> taches) {
         ArrayList<String> saves = new ArrayList<>();
 
-        for (Tache tache :taches){
-            saves.add(tacheEnLigne(tache)) ;
+        for (Tache tache : taches) {
+            saves.add(tacheEnLigne(tache));
         }
         
         try {
-            Files.write(CHEMIN, saves  , StandardCharsets.UTF_8);
+            Files.write(CHEMIN, saves, StandardCharsets.UTF_8);
             System.out.println("Sauvegarde réussie : " + saves.size() + " tâche(s) enregistrée(s).");
         } catch (IOException e) {
-            System.out.println( "Impossible d'effectuer la sauvegarde.");
+            System.out.println("Échec de la sauvegarde : Impossible d'écrire dans taches.csv ("
+                    + e.getMessage() + "). Vos données n'ont pas été sauvegardées.");
         }
-
     }
     
     // Lève IllegalArgumentException avec le numéro de ligne si une ligne est mal formée.
