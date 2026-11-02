@@ -47,7 +47,7 @@ public class Main {
             ArrayList<Tache> taches = gestionnaire.getTaches();
 
             System.out.print(
-                    "\n1. Ajouter une tâche \n2. Afficher les tâches \n3. Terminer une tâche \n4. Modifier la priorité \n5. Attribuer une échéance \n6. Modifier une échéance \n7. Retirer une échéance \n8.Sauvergarder \n9. Quitter \n\nChoix : "
+                    "\n1. Ajouter une tâche \n2. Afficher les tâches \n3. Terminer une tâche \n4. Modifier la priorité \n5. Attribuer une échéance \n6. Modifier une échéance \n7. Retirer une échéance \n8 .Sauvergarder \n9. Quitter \n\nChoix : "
                 );
             String texte = scanner.nextLine();
             int choix;
