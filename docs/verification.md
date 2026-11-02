@@ -33,24 +33,110 @@ Après chaque scénario exécuté, l'état des tâches a été contrôlé avec l
 | 11 | Fichier absent ou mal formé | Démarrer sans fichier ; démarrer avec un fichier de données mal formé | Liste vide dans le premier cas ; message et démarrage interrompu sans modifier le fichier dans le second | Sans fichier : « Aucun fichier de données trouvé (taches.csv). Démarrage avec une liste vide. » avant le menu, aucune erreur ; taches.csv n'existe toujours pas après avoir quitté, il n'est créé qu'au choix Sauvegarder ; au relancement avec le fichier présent, aucun message d'absence. Fichier mal formé : non exécuté, fonctionnalité pas encore livrée | Conforme pour le démarrage sans fichier ; À exécuter pour le fichier mal formé |
 | 12 | Échec d'écriture | Sauvegarder alors que le fichier est en lecture seule | Échec signalé, aucun message de réussite | Non exécuté : fonctionnalité pas encore livrée | À exécuter |
 
-## Scénario 7 : Modifier la priorité (US-04)
+## Scénario 1 : Liste vide
 
-| # | Données saisies (option 4) | Résultat attendu | Résultat observé | Conclusion |
+| # | Données | Résultat attendu | Résultat observé | Conclusion |
 |---|---|---|---|---|
-| 7.1 | id `1`, priorité `Basse` | Priorité modifiée, message de succès | Priorité modifiée, message de succès | Réussi |
-| 7.2 | id `1`, priorité `ÉLEVÉE` | Accepté (casse et accents ignorés), devient « Élevée » | Accepté, devient « Élevée » | Réussi |
-| 7.3 | id `1`, priorité `elevee` | Accepté, devient « Élevée » | Accepté | Réussi |
-| 7.4 | id `1`, priorité `urgente` | Refusé, priorité actuelle inchangée | Message « Priorité invalide… », priorité inchangée | Réussi |
-| 7.5 | id `999` | Message « Aucune tâche avec l'identifiant 999 », données conservées | Message affiché, données conservées | Réussi |
-| 7.6 | id `0` | Refusé : « Identifiant invalide » | Message affiché | Réussi |
-| 7.7 | id `-3` | Refusé : « Identifiant invalide » | Message affiché | Réussi |
-| 7.8 | id `abc` | Refusé : « Identifiant invalide » | Message affiché | Réussi |
-| 7.9 | id `1`, priorité identique à l'actuelle | Message « a déjà la priorité… », aucune modification | Message affiché | Réussi |
+| 1.1 | Aucun `taches.csv`, démarrer, option 2 | Message de démarrage « Aucun fichier de données trouvé… », puis message explicite indiquant qu'aucune tâche n'existe | Message de démarrage affiché, puis message indiquant qu'aucune tâche n'existe | Conforme |
 
+## Scénario 2 : Ajout valide
 
-## Scénario 12 : Échec d'écriture lors de la sauvegarde (US-12)
-
-| # | Données / action | Résultat attendu | Résultat observé | Conclusion |
+| # | Données | Résultat attendu | Résultat observé | Conclusion |
 |---|---|---|---|---|
-| 12.1 | Relancer, ajouter une tâche, option 8 avec `taches.csv` en lecture seule | Message d'échec clair avec la raison, **aucun** message « Sauvegarde réussie » | Message d'echec constaté | Réussi |
-| 12.2 | `chmod 644 taches.csv`, relancer, ajouter une tâche, option 8 | « Sauvegarde réussie : N tâche(s) enregistrée(s). » | Sauvergarde réussi | Réussi |
+| 2.1 | Titre « Vérifier la sauvegarde du serveur », Entrée, Entrée | « Tâche ajoutée avec succès. », identifiant 1, priorité Normale, échéance Aucune, statut À faire | Message de succès, identifiant 1, Normale, Aucune, À faire | Conforme |
+| 2.2 | Titre « Mettre à jour le guide utilisateur », priorité `3`, échéance `2026-12-01` | Identifiant 2, priorité Élevée, échéance 2026-12-01, statut À faire | Identifiant 2, Élevée, 2026-12-01, À faire | Conforme |
+| 2.3 | Titre « Vérifier la sauvegarde du serveur » (titre déjà utilisé) | Tâche créée avec un identifiant distinct (3) | Tâche créée avec l'identifiant 3 | Conforme |
+
+## Scénario 3 : Titre invalide
+
+| # | Données | Résultat attendu | Résultat observé | Conclusion |
+|---|---|---|---|---|
+| 3.1 | Titre vide (Entrée) | « Erreur : le titre est obligatoire. », titre redemandé | Message d'erreur affiché, titre redemandé | Conforme |
+| 3.2 | Titre composé de trois espaces | Même refus, titre redemandé | Même message d'erreur, titre redemandé | Conforme |
+| 3.3 | Titre `annuler` | « Ajout annulé. », retour au menu | « Ajout annulé. », retour au menu | Conforme |
+| 3.4 | Option 2 après 3.1 à 3.3 | Aucune tâche invalide ajoutée | Aucune nouvelle tâche dans la liste | Conforme |
+
+## Scénario 4 : Liste de plusieurs tâches
+
+| # | Données | Résultat attendu | Résultat observé | Conclusion |
+|---|---|---|---|---|
+| 4.1 | « Tâche A » (Élevée, 2026-11-30), « Tâche B » (Normale, sans échéance), « Tâche B » (Basse), puis option 2 | Trois tâches affichées avec identifiant, titre, priorité, échéance ou « Aucune », statut ; les deux « Tâche B » distinguées par l'identifiant | Trois tâches affichées avec tous leurs champs, identifiants 1, 2 et 3, « Aucune » pour les tâches sans échéance | Conforme |
+
+## Scénario 5 : Tâche terminée
+
+| # | Données | Résultat attendu | Résultat observé | Conclusion |
+|---|---|---|---|---|
+| 5.1 | Tâches 1 et 2 existantes, option 3, identifiant 1 | Confirmation ; l'option 2 montre la tâche 1 « Terminée », ses autres champs et la tâche 2 inchangés | Confirmation affichée ; tâche 1 Terminée, reste inchangé | Conforme |
+| 5.2 | Option 3, identifiant 1 une seconde fois | « La tâche 1 est déjà terminée. Aucune modification n'est nécessaire. » | Message affiché, aucune modification | Conforme |
+
+## Scénario 6 : Identifiant inconnu
+
+| # | Données | Résultat attendu | Résultat observé | Conclusion |
+|---|---|---|---|---|
+| 6.1 | Options 3, 4, 5, 6 et 7 avec l'identifiant 99 | Message indiquant qu'aucune tâche n'a cet identifiant | Message d'erreur affiché dans chaque cas | Conforme |
+| 6.2 | Option 2 après 6.1 | Toutes les données existantes conservées | Tâches inchangées | Conforme |
+
+## Scénario 7 : Priorité
+
+| # | Données | Résultat attendu | Résultat observé | Conclusion |
+|---|---|---|---|---|
+| 7.1 | Option 4, id `1`, `Basse` | Priorité modifiée, message de succès | Priorité modifiée, message de succès | Conforme |
+| 7.2 | id `1`, `ÉLEVÉE` | Accepté (casse et accents ignorés), devient « Élevée » | Accepté, devient « Élevée » | Conforme |
+| 7.3 | id `1`, `elevee` | Accepté, devient « Élevée » | Accepté | Conforme |
+| 7.4 | id `1`, `Normale` | Accepté, devient « Normale » | Accepté | Conforme |
+| 7.5 | id `1`, `urgente` | « Priorité invalide. Choisissez Basse, Normale ou Élevée. », priorité inchangée | Message affiché, priorité inchangée | Conforme |
+| 7.6 | id `1`, priorité identique à l'actuelle | Message « a déjà la priorité… », aucune modification | Message affiché | Conforme |
+| 7.7 | id `0`, `-3`, `abc` ou vide | « Identifiant invalide : entrez un nombre entier positif. » | Message affiché dans chaque cas | Conforme |
+
+## Scénario 8 : Échéance
+
+| # | Données | Résultat attendu | Résultat observé | Conclusion |
+|---|---|---|---|---|
+| 8.1 | Option 5, id 1 (sans échéance), `2026-12-15` | Échéance attribuée | Échéance attribuée | Conforme |
+| 8.2 | Option 5, id 2 (a déjà une échéance) | Refusé, renvoi vers l'option 6 | Refusé avec renvoi vers l'option 6 | Conforme |
+| 8.3 | Option 5, `10/08/2026` puis `2026-02-30` | Refusés avec « Erreur : date invalide… », date redemandée | Refusés, date redemandée | Conforme |
+| 8.4 | Option 5, `2026-10-08` (date passée) | Avertissement « déjà passée », échéance quand même attribuée | Avertissement affiché, échéance attribuée | Conforme |
+| 8.5 | Option 6, id 2, `2027-01-10` | Échéance modifiée | Échéance modifiée | Conforme |
+| 8.6 | Option 6, id 2, `2026-02-30` | Refusée, échéance existante inchangée | Refusée, échéance inchangée | Conforme |
+| 8.7 | Option 7, id 2 | Échéance retirée, affichée « Aucune » | Échéance retirée, « Aucune » à l'affichage | Conforme |
+| 8.8 | Option 7 sur une tâche sans échéance | Signalé, aucune modification | Message affiché, aucune modification | Conforme |
+
+## Scénario 9 : Sauvegarde et redémarrage
+
+| # | Données | Résultat attendu | Résultat observé | Conclusion |
+|---|---|---|---|---|
+| 9.1 | « Tâche A » (Élevée, 2026-11-30, terminée) et « Tâche B » (Normale, sans échéance), option 8 | « Sauvegarde réussie : 2 tâche(s) enregistrée(s). » ; fichier `1;Tâche A;Élevée;2026-11-30;Terminée` et `2;Tâche B;Normale;;À faire` | Message de réussite ; contenu du fichier conforme | Conforme |
+| 9.2 | Option 9, relancer, option 2 | « Chargement réussi : 2 tâche(s) chargée(s) depuis taches.csv. » ; mêmes identifiants, titres, priorités, échéances (absente conservée), statuts ; fichier inchangé | Chargement réussi, mêmes données, empreinte identique | Conforme |
+
+## Scénario 10 : Ajout après rechargement
+
+| # | Données | Résultat attendu | Résultat observé | Conclusion |
+|---|---|---|---|---|
+| 10.1 | Après 9.2, ajouter « Tâche C » | Identifiant 3, distinct de 1 et 2 | Identifiant 3 | Conforme |
+| 10.2 | Fichier écrit à la main avec les identifiants 1 et 5, ajouter une tâche | Identifiant 6 | Identifiant 6 | Conforme |
+| 10.3 | Fichier vide, ajouter une tâche | « Chargement réussi : 0 tâche(s)… », identifiant 1 | Message affiché, identifiant 1 | Conforme |
+
+## Scénario 11 : Fichier absent ou mal formé
+
+| # | Contenu de `taches.csv` | Résultat attendu | Résultat observé | Conclusion |
+|---|---|---|---|---|
+| 11.0 | Fichier absent | « Aucun fichier de données trouvé (taches.csv). Démarrage avec une liste vide. », fichier non créé avant une sauvegarde | Message affiché, fichier non créé | Conforme |
+| 11.1 | Deux lignes avec l'identifiant 1 | « ligne 2, identifiant en double (1) », arrêt, fichier inchangé | « Impossible de charger taches.csv : ligne 2, identifiant en double (1). Le fichier n'a pas été modifié. Arrêt de l'application. » | Conforme |
+| 11.2 | `1; ;Basse;;À faire` | « ligne 1, titre vide », arrêt, fichier inchangé | « ligne 1, titre vide. Le fichier n'a pas été modifié. Arrêt de l'application. » | Conforme |
+| 11.3 | `1;Test;Basse;À faire` | « ligne 1, 5 colonnes attendues au lieu de 4 », arrêt, fichier inchangé | Message attendu affiché, arrêt, fichier inchangé | Conforme |
+| 11.4 | `1;Test;urgente;;À faire` | « ligne 1, priorité invalide », arrêt, fichier inchangé | Message attendu affiché, arrêt, fichier inchangé | Conforme |
+| 11.5 | `1;Test;Basse;2026-02-30;À faire` | « ligne 1, échéance invalide », arrêt, fichier inchangé | Message attendu affiché, arrêt, fichier inchangé | Conforme |
+| 11.6 | `1;Test;Basse;;Fini` | « ligne 1, statut invalide », arrêt, fichier inchangé | Message attendu affiché, arrêt, fichier inchangé | Conforme |
+| 11.7 | `abc;Test;Basse;;À faire` | « ligne 1, identifiant invalide », arrêt, fichier inchangé | Message attendu affiché, arrêt, fichier inchangé | Conforme |
+| 11.8 | `1;Test;Basse;;À faire` | « Chargement réussi : 1 tâche(s) chargée(s) depuis taches.csv. » | Message affiché | Conforme |
+
+## Scénario 12 : Échec d'écriture
+
+| # | Données | Résultat attendu | Résultat observé | Conclusion |
+|---|---|---|---|---|
+| 12.1 | Sauvegarder une fois, quitter, `chmod 444 taches.csv`, relancer, ajouter une tâche, option 8 | Message d'échec, aucun « Sauvegarde réussie » | Message d'échec affiché, aucun message de réussite | Conforme |
+| 12.2 | `chmod 644 taches.csv`, relancer, ajouter une tâche, option 8 | « Sauvegarde réussie : N tâche(s) enregistrée(s). » | Message de réussite affiché | Conforme |
+
+## Anomalies connues
+- Un titre contenant `;` casse le format du fichier de données (limite connue, documentée dans le README).
+- Les modifications non sauvegardées sont perdues à la fermeture, sans avertissement.
