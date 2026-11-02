@@ -211,10 +211,60 @@ public class Main {
                     System.out.println(e.getMessage());
                 }
             
-            //attribuer une echeance
+            //choix 5 : attribuer une échéance (US-05)
             } else if (choix == 5) {
-                
-            
+
+                // verifie si il y a des taches qui existe avant quoi que ce soit
+                if (taches.size() < 1) {
+                    System.out.println("\nAucune tâche crée pour l'instant");
+                    continue;
+                }
+
+                System.out.println();
+
+                // demande et verifie la validite de l'id
+                int id = askId(taches, scanner);
+
+                // On refuse avant de demander la date si la tâche a déjà une échéance.
+                Tache tache = gestionnaire.trouverParId(id);
+                if (tache.getEcheance() != null) {
+                    System.out.println("La tâche " + id + " a déjà une échéance (" + tache.getEcheance()
+                            + "). Utilisez l'option 6 pour la modifier.");
+                    continue;
+                }
+
+                // La date est redemandée tant qu'elle est invalide. Entrée seule annule.
+                LocalDate echeance = null;
+                while (echeance == null) {
+                    System.out.print("Échéance (AAAA-MM-JJ) [Entrée = annuler] : ");
+                    String saisie = scanner.nextLine().trim();
+                    if (saisie.isEmpty()) {
+                        break;
+                    }
+                    try {
+                        echeance = LocalDate.parse(saisie);
+                    } catch (DateTimeParseException e) {
+                        System.out.println("Erreur : date invalide. Utilisez le format AAAA-MM-JJ avec une date qui existe.");
+                    }
+                }
+
+                if (echeance == null) {
+                    System.out.println("Attribution annulée. Aucune échéance n'a été attribuée.");
+                    continue;
+                }
+
+                if (echeance.isBefore(LocalDate.now())) {
+                    System.out.println("Attention : cette date d'échéance est déjà passée. Elle sera quand même attribuée.");
+                }
+
+                try {
+                    gestionnaire.attribuerEcheance(id, echeance);
+                    System.out.println("La tâche " + id + " (« " + tache.getTitre()
+                            + " ») a maintenant l'échéance " + echeance + ".");
+                } catch (IllegalArgumentException | IllegalStateException e) {
+                    System.out.println(e.getMessage());
+                }
+
             //choix 6 : modifier une échéance
             } else if (choix == 6) {
                 // verifie si il y a des taches qui existe avant quoi que ce soit
