@@ -4,3 +4,6 @@ out/
 bin/
 .vscode/
 *.csv
+# macOS
+.DS_Store
+**/.DS_Store
