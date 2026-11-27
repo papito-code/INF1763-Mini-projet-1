@@ -1,0 +1,4 @@
+Impossible de charger taches.csv : ligne 2, identifiant en double (1). Le fichier n'a pas été modifié. Arrêt de l'application.
+--- taches.csv ---
+1;Tâche test A;Normale;;À faire
+1;Tâche test B;Basse;;À faire

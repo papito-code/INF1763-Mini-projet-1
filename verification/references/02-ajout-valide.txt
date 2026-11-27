@@ -1,0 +1,104 @@
+Aucun fichier de données trouvé (taches.csv). Démarrage avec une liste vide.
+
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : 
+Titre : Priorité (1 = Basse, 2 = Normale, 3 = Élevée) [Entrée = Normale] : Échéance (AAAA-MM-JJ) [Entrée = aucune] : 
+Tâche ajoutée avec succès.
+Identifiant : 1
+Titre : Vérifier la sauvegarde du serveur
+Priorité : Normale
+Échéance : Aucune
+Statut : À faire
+
+
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : 
+Titre : Priorité (1 = Basse, 2 = Normale, 3 = Élevée) [Entrée = Normale] : Échéance (AAAA-MM-JJ) [Entrée = aucune] : 
+Tâche ajoutée avec succès.
+Identifiant : 2
+Titre : Mettre à jour le guide utilisateur
+Priorité : Élevée
+Échéance : 2099-12-01
+Statut : À faire
+
+
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : 
+Titre : Priorité (1 = Basse, 2 = Normale, 3 = Élevée) [Entrée = Normale] : Échéance (AAAA-MM-JJ) [Entrée = aucune] : 
+Tâche ajoutée avec succès.
+Identifiant : 3
+Titre : Vérifier la sauvegarde du serveur
+Priorité : Normale
+Échéance : Aucune
+Statut : À faire
+
+
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : 
+Tâche 1 : 
+Titre : Vérifier la sauvegarde du serveur
+Priorite : Normale
+Date d'échéance : Aucune
+Statut : À faire
+
+Tâche 2 : 
+Titre : Mettre à jour le guide utilisateur
+Priorite : Élevée
+Date d'échéance : 2099-12-01
+Statut : À faire
+
+Tâche 3 : 
+Titre : Vérifier la sauvegarde du serveur
+Priorite : Normale
+Date d'échéance : Aucune
+Statut : À faire
+
+
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : 
+Au revoir !

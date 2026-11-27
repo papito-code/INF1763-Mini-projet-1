@@ -1,0 +1,91 @@
+Chargement réussi : 1 tâche(s) chargée(s) depuis taches.csv.
+
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : Identifiant de la tâche : Nouvelle priorité (Basse, Normale ou Élevée) : 
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : Identifiant de la tâche : Nouvelle priorité (Basse, Normale ou Élevée) : 
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : Identifiant de la tâche : Nouvelle priorité (Basse, Normale ou Élevée) : La tâche 1 a déjà la priorité Élevée. Aucune modification n'a été faite.
+
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : Identifiant de la tâche : Nouvelle priorité (Basse, Normale ou Élevée) : 
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : Identifiant de la tâche : Nouvelle priorité (Basse, Normale ou Élevée) : Priorité invalide. Choisissez Basse, Normale ou Élevée.
+
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : 
+Tâche 1 : 
+Titre : Tâche test A
+Priorite : Normale
+Date d'échéance : Aucune
+Statut : À faire
+
+
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : 
+Au revoir !
+--- taches.csv ---
+1;Tâche test A;Normale;;À faire

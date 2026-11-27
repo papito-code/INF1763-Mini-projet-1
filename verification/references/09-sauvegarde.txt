@@ -1,0 +1,82 @@
+Aucun fichier de données trouvé (taches.csv). Démarrage avec une liste vide.
+
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : 
+Titre : Priorité (1 = Basse, 2 = Normale, 3 = Élevée) [Entrée = Normale] : Échéance (AAAA-MM-JJ) [Entrée = aucune] : 
+Tâche ajoutée avec succès.
+Identifiant : 1
+Titre : Tâche test A
+Priorité : Élevée
+Échéance : 2099-11-30
+Statut : À faire
+
+
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : 
+Titre : Priorité (1 = Basse, 2 = Normale, 3 = Élevée) [Entrée = Normale] : Échéance (AAAA-MM-JJ) [Entrée = aucune] : 
+Tâche ajoutée avec succès.
+Identifiant : 2
+Titre : Tâche test B
+Priorité : Normale
+Échéance : Aucune
+Statut : À faire
+
+
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : Identifiant de la tâche : La tâche 1 (« Tâche test A ») est maintenant terminée. Statut : À faire -> Terminée.
+
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : 
+Sauvegarde réussie : 2 tâche(s) enregistrée(s).
+
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : 
+Au revoir !
+--- taches.csv ---
+1;Tâche test A;Élevée;2099-11-30;Terminée
+2;Tâche test B;Normale;;À faire

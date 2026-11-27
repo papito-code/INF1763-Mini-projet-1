@@ -1,0 +1,27 @@
+Aucun fichier de données trouvé (taches.csv). Démarrage avec une liste vide.
+
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : 
+Aucune tâche crée pour l'instant
+
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : 
+Au revoir !

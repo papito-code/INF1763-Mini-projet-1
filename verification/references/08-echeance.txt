@@ -1,0 +1,124 @@
+Chargement réussi : 2 tâche(s) chargée(s) depuis taches.csv.
+
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : 
+Identifiant de la tâche : Échéance (AAAA-MM-JJ) [Entrée = annuler] : Erreur : date invalide. Utilisez le format AAAA-MM-JJ avec une date qui existe.
+Échéance (AAAA-MM-JJ) [Entrée = annuler] : Erreur : date invalide. Utilisez le format AAAA-MM-JJ avec une date qui existe.
+Échéance (AAAA-MM-JJ) [Entrée = annuler] : La tâche 1 (« Tâche test A ») a maintenant l'échéance 2099-12-15.
+
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : 
+Identifiant de la tâche : La tâche 2 a déjà une échéance (2099-06-01). Utilisez l'option 6 pour la modifier.
+
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : 
+Identifiant de la tâche : Nouvelle Échéance: (AAAA-MM-JJ) [Entrée = aucune] : Erreur : date invalide. Utilisez le format AAAA-MM-JJ avec une date qui existe.
+Nouvelle Échéance: (AAAA-MM-JJ) [Entrée = aucune] : 
+La tâche 2 (« Tâche test B ») a maintenant pour nouvelle echeance : 2099-01-10
+
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : Identifiant de la tâche : 
+La tâche 2 (« Tâche test B ») est maintenant sans échéance. Échéance : Aucune.
+
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : Identifiant de la tâche : 
+La tâche 2 n'a déjà pas d'échéance.
+
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : 
+Identifiant de la tâche : Échéance (AAAA-MM-JJ) [Entrée = annuler] : Attention : cette date d'échéance est déjà passée. Elle sera quand même attribuée.
+La tâche 2 (« Tâche test B ») a maintenant l'échéance 2020-10-08.
+
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : 
+Tâche 1 : 
+Titre : Tâche test A
+Priorite : Normale
+Date d'échéance : 2099-12-15
+Statut : À faire
+
+Tâche 2 : 
+Titre : Tâche test B
+Priorite : Basse
+Date d'échéance : 2020-10-08
+Statut : À faire
+
+
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : 
+Au revoir !
+--- taches.csv ---
+1;Tâche test A;Normale;;À faire
+2;Tâche test B;Basse;2099-06-01;À faire
