@@ -34,7 +34,10 @@ if [ "${1:-}" = "--references" ]; then
 fi
 
 mkdir -p "$TRAVAIL/classes"
-find "$SOURCES" -name '*.java' > "$TRAVAIL/sources.txt"
+find "$SOURCES" -name '*.java' -print0 |
+    while IFS= read -r -d '' fichier; do
+        printf '"%s"\n' "$fichier"
+    done > "$TRAVAIL/sources.txt"
 if ! javac -encoding UTF-8 -d "$TRAVAIL/classes" @"$TRAVAIL/sources.txt"; then
     echo "Échec de la compilation."
     exit 1
