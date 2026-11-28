@@ -1,0 +1,70 @@
+Aucun fichier de données trouvé (taches.csv). Démarrage avec une liste vide.
+
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : 
+Titre : Erreur : le titre est obligatoire.
+Titre : Erreur : le titre est obligatoire.
+Titre : Ajout annulé.
+
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : 
+Titre : Priorité (1 = Basse, 2 = Normale, 3 = Élevée) [Entrée = Normale] : Erreur : choisissez 1 (Basse), 2 (Normale) ou 3 (Élevée).
+Priorité (1 = Basse, 2 = Normale, 3 = Élevée) [Entrée = Normale] : Échéance (AAAA-MM-JJ) [Entrée = aucune] : Erreur : date invalide. Utilisez le format AAAA-MM-JJ avec une date qui existe.
+Échéance (AAAA-MM-JJ) [Entrée = aucune] : Erreur : date invalide. Utilisez le format AAAA-MM-JJ avec une date qui existe.
+Échéance (AAAA-MM-JJ) [Entrée = aucune] : 
+Tâche ajoutée avec succès.
+Identifiant : 1
+Titre : Tâche test
+Priorité : Normale
+Échéance : 2099-01-01
+Statut : À faire
+
+
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : 
+Tâche 1 : 
+Titre : Tâche test
+Priorite : Normale
+Date d'échéance : 2099-01-01
+Statut : À faire
+
+
+1. Ajouter une tâche 
+2. Afficher les tâches 
+3. Terminer une tâche 
+4. Modifier la priorité 
+5. Attribuer une échéance 
+6. Modifier une échéance 
+7. Retirer une échéance 
+8. Sauvergarder 
+9. Quitter 
+
+Choix : 
+Au revoir !

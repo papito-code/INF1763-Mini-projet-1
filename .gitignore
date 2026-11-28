@@ -7,3 +7,5 @@ bin/
 # macOS
 .DS_Store
 **/.DS_Store
+# Données de départ des scénarios de vérification
+!verification/donnees/*.csv

@@ -1,0 +1,17 @@
+4
+1
+Basse
+4
+1
+ÉLEVÉE
+4
+1
+elevee
+4
+1
+Normale
+4
+1
+urgente
+2
+9
